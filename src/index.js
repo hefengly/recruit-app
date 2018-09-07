@@ -8,6 +8,8 @@ import reducers from './reducer'
 import './config'
 import Login from './container/login/login'
 import Register from './container/register/register'
+import AuthRoute from './component/authroute/authroute'
+import './index.css'
 // import registerServiceWorker from './registerServiceWorker';
 // registerServiceWorker();
 
@@ -21,6 +23,8 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <div>
+          <AuthRoute></AuthRoute>
+          {/* <Route></Route> */}
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
         </div>
