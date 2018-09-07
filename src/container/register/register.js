@@ -2,6 +2,7 @@ import React from 'react'
 import Logo from '../../component/logo/logo'
 import {List, InputItem, WhiteSpace, Button, Radio} from 'antd-mobile'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import {register} from '../../redux/user.redux'
 
 @connect(
@@ -26,16 +27,17 @@ class Register extends React.Component{
     })
   }
   handleRegister() {
-    console.log(this.state)
+    // 经过connect的作用后， register 本身返回了一个dispatch()  
     this.props.register(this.state)
   }
   render() {
     const RadioItem = Radio.RadioItem
     return (
       <div>
+        {this.props.redirectTo ? <Redirect to={this.props.redirectTo}></Redirect> : null}
         <Logo></Logo>
+        {this.props.msg ? <p className="error-msg">{this.props.msg}</p> : null}
         <List>
-          {this.props.msg ? <p className="error-msg">{this.props.msg}</p> : null}
           <InputItem
             onChange={v => this.handleChange('user',v)}  
           >用户名</InputItem>
@@ -61,9 +63,9 @@ class Register extends React.Component{
             Boss
           </RadioItem>
           <WhiteSpace/>
+          <WhiteSpace/>
           <Button type='primary' onClick={this.handleRegister}>注册</Button>
         </List>
-        <h2>注册页</h2>
       </div>
     )
   }
