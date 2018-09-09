@@ -1,7 +1,8 @@
 
 export function getRedirectPath({type,avatar}) {
   // 根据用户的信息，返回跳转地址
-  let url = (type === 'boss') ? '/boss': 'genius'
+  console.log(type)
+  let url = (type === 'boss') ? '/boss': '/genius'
   if (!avatar) {
     url += 'info'
   }
