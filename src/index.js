@@ -12,6 +12,7 @@ import BossInfo from './container/bossinfo/bossinfo'
 import GeniusInfo from './container/geniusinfo/geniusinfo'
 import AuthRoute from './component/authroute/authroute'
 import './index.css'
+import Dashboard from './component/dashboard/dashboard'
 // import registerServiceWorker from './registerServiceWorker';
 // registerServiceWorker();
 
@@ -20,17 +21,20 @@ const store = createStore(reducers,compose(
   window.devToolsExtension?window.devToolsExtension():f => f
 ))
 
+
 ReactDOM.render(
   (
     <Provider store={store}>
       <BrowserRouter>
         <div>
           <AuthRoute></AuthRoute>
-          {/* <Route></Route> */}
-          <Route path="/bossinfo" component={BossInfo}></Route>
-          <Route path="/geniusinfo" component={GeniusInfo}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/register" component={Register}></Route>
+          <Switch>
+            <Route path="/bossinfo" component={BossInfo}></Route>
+            <Route path="/geniusinfo" component={GeniusInfo}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/register" component={Register}></Route>
+            <Route component={Dashboard}></Route>
+          </Switch>
         </div>
       </BrowserRouter>
     </Provider>
